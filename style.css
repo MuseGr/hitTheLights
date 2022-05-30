@@ -26,5 +26,8 @@ body{
     box-shadow: 10px 10px 10px 2px;
 }
 .active{
+    background-color: var(--brown);
+}
+.correct{
     background-color: var(--light-blue);
 }

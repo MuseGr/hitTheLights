@@ -1,6 +1,11 @@
 var container = document.querySelector('.container')
+var cellList = []
 
-//Seting up game loop thath refreshes every half of second
+for(var i = 0; i < container.childElementCount; i++){
+    cellList.push(container.children[i])
+}
+
+//Seting up prep loop thath refreshes every half of second
 var gameState = 0
 var gamePrep = window.setInterval(gamePrep, 1000);
 
@@ -8,6 +13,7 @@ var shouldStartTheGane = 0
 
 var numOfCombinations = 4
 var currentCellCount = 0
+var lastRandNum
 
 let listOfCells = []
 
@@ -24,7 +30,10 @@ function gamePrep() {
     });
 
     if(gameState === 1){
-        var rand =  Math.floor(Math.random() * 9) 
+        do{
+            var rand =  Math.floor(Math.random() * 9)
+        }while(rand === lastRandNum)
+
         var curentCell = container.children[rand]
 
         curentCell.classList.add("active")
@@ -48,3 +57,22 @@ function gamePrep() {
     }
 }
 
+cellList.forEach(cell => {
+    cell.addEventListener('click', playerInput)
+});
+
+var numOfCorrect = 0
+
+function playerInput(event){
+    if(gameState === 2){
+        if(event.target === listOfCells[numOfCorrect]){
+            event.target.classList.add("correct")
+            numOfCorrect++
+    
+            if(numOfCorrect === numOfCombinations){
+                window.open("https://www.youtube.com/shorts/ko6qdSKmV_o", '_blank')
+            }
+        }else
+        window.open("https://www.youtube.com/watch?v=5Q_2nrp9OTg", '_blank')
+    }
+}
