@@ -1,9 +1,5 @@
 var container = document.querySelector('.container')
-var cellList = []
-
-for(var i = 0; i < container.childElementCount; i++){
-    cellList.push(container.children[i])
-}
+const cells = document.querySelectorAll('.cell')
 
 //Seting up prep loop thath refreshes every half of second
 var gameState = 0
@@ -57,9 +53,9 @@ function gamePrep() {
     }
 }
 
-cellList.forEach(cell => {
+cells.forEach(cell => {
     cell.addEventListener('click', playerInput)
-});
+})
 
 var numOfCorrect = 0
 
